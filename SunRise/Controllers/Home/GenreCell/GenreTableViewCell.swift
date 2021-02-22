@@ -5,6 +5,8 @@ final class GenreTableViewCell: UITableViewCell, Reusable, NibLoadable {
     @IBOutlet weak private var genreLabel: UILabel!
     @IBOutlet weak private var collectionView: UICollectionView!
     
+    var isGenreCellPressed: ((Track) -> Void)?
+    
     private var tracks = [Track]() {
         didSet {
             updateUI()
@@ -67,5 +69,11 @@ extension GenreTableViewCell: UICollectionViewDelegate,
         cell.binding(track: tracks[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        
+        isGenreCellPressed?(tracks[indexPath.row])
     }
 }

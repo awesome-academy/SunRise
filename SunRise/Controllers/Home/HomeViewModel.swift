@@ -1,8 +1,20 @@
 import Foundation
+import AVFoundation
+import NotificationCenter
+import CoreData
 
 final class HomeViewModel {
+    
     private var playlists = [Playlist]()
-    var songs = [String: [Track]]()
+    let player = Player.shared
+    
+    var songs = [String: [Track]]() {
+        didSet {
+            player.songs = songs
+        }
+    }
+    
+    var songPlayingID: Int?
     
     func loadAPI(completion: @escaping (Bool) -> Void) {
         APIManager.Music.getPlaylist() { [weak self]results in
@@ -53,5 +65,43 @@ final class HomeViewModel {
         }
         
         return newDict
+    }
+    
+    // MARK: - Play Music
+    
+    func playMusic(with track: Track) {
+        player.addSongPlayer(streamUrl: track.streamURL) { done in
+            if done {
+                player.playMusic(with: track)
+                songPlayingID = track.trackID
+            }
+        }
+    }
+    
+    // MARK: - CoreData
+    
+    func saveFavorite() {
+        player.saveFavorite(id: songPlayingID)
+    }
+    
+    func removeFavorite() {
+        player.removeFavorite(id: songPlayingID)
+    }
+    
+    func isLiked(with id: Int) -> Bool {
+        return CoreDataManager.Favorite.findItem(with: id)
+    }
+    
+    func fetchTrackPlaying() -> PlayingManagedObject?{
+        if let playing = player.fetchTrackPlaying() {
+            songPlayingID = Int(playing.id)
+            return playing
+        }
+        
+        return nil
+    }
+    
+    func saveSongPlaying(with track: Track) {
+        player.saveSongPlaying(with: track)
     }
 }

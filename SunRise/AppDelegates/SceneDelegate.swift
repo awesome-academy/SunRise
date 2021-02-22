@@ -40,4 +40,8 @@ class SceneDelegate: UIResponder,
         
         window?.rootViewController = tabBarController
     }
+    
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
 }

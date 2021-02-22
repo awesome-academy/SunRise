@@ -2,13 +2,13 @@ import Foundation
 import UIKit
 
 struct Track: Codable {
-
+    
     let trackID: Int?
     let title: String?
     let genre: String?
     let streamURL: String?
     let artworkURL: String?
-
+    
     let userID: Int
     let userName: String
 

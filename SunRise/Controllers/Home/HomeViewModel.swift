@@ -14,8 +14,6 @@ final class HomeViewModel {
         }
     }
     
-    var songPlayingID: Int?
-    
     func loadAPI(completion: @escaping (Bool) -> Void) {
         APIManager.Music.getPlaylist() { [weak self]results in
             switch results {
@@ -67,41 +65,17 @@ final class HomeViewModel {
         return newDict
     }
     
-    // MARK: - Play Music
-    
-    func playMusic(with track: Track) {
-        player.addSongPlayer(streamUrl: track.streamURL) { done in
-            if done {
-                player.playMusic(with: track)
-                songPlayingID = track.trackID
-            }
-        }
-    }
-    
     // MARK: - CoreData
     
     func saveFavorite() {
-        player.saveFavorite(id: songPlayingID)
+        player.saveFavorite(id: player.songPlayingID)
     }
     
     func removeFavorite() {
-        player.removeFavorite(id: songPlayingID)
+        player.removeFavorite(id: player.songPlayingID)
     }
     
     func isLiked(with id: Int) -> Bool {
         return CoreDataManager.Favorite.findItem(with: id)
-    }
-    
-    func fetchTrackPlaying() -> PlayingManagedObject?{
-        if let playing = player.fetchTrackPlaying() {
-            songPlayingID = Int(playing.id)
-            return playing
-        }
-        
-        return nil
-    }
-    
-    func saveSongPlaying(with track: Track) {
-        player.saveSongPlaying(with: track)
     }
 }

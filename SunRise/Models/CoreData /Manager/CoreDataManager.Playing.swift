@@ -4,16 +4,16 @@ import CoreData
 
 extension CoreDataManager.Playing {
 
-    static func save(with track: Track) {
+    static func save<T>(with track: T) {
         if let managedContext = CoreDataManager.appDelegate?.persistentContainer.viewContext {
             let playingMO = PlayingManagedObject(context: managedContext)
             
-            playingMO.id = Int32(track.trackID ?? 0)
-            playingMO.title = track.title
-            playingMO.genre = track.genre
-            playingMO.artworkURL = track.artworkURL
-            playingMO.streamURL = track.streamURL
-            playingMO.userName = track.userName
+            if let track = track as? Track {
+                playingMO.setData(resource: track)
+            }
+            else if let track = track as? FavoriteManagedObject{
+                playingMO.setData(resource: track)
+            }
         
             do {
                 try managedContext.save()

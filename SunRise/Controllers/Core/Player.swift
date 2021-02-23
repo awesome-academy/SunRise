@@ -11,6 +11,7 @@ final class Player {
     static let shared = Player()
     private var audioPlayer = AVPlayer()
     var songs = [String: [Track]]()
+    var songPlayingID: Int?
     
     var state: State = .stopped {
         didSet {
@@ -44,6 +45,22 @@ final class Player {
         addSongPlayer(streamUrl: track.streamURL) { done in
             if done {
                 state = .isPlaying
+                songPlayingID = track.trackID
+                saveSongPlaying(with: track)
+                
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(playerDidReachEnd),
+                                                       name: Notification.Name.AVPlayerItemDidPlayToEndTime,
+                                                       object: nil)
+            }
+        }
+    }
+    
+    func playMusic(with track: FavoriteManagedObject) {
+        addSongPlayer(streamUrl: track.streamURL) { done in
+            if done {
+                state = .isPlaying
+                songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
                 
                 NotificationCenter.default.addObserver(self,
@@ -80,13 +97,13 @@ final class Player {
                 addSongPlayer(streamUrl: playing.streamURL,
                               completion: { _ in })
             }
-
+            songPlayingID = Int(playing.id)
             return playing
         }
         return nil
     }
     
-    func saveSongPlaying(with track: Track) {
+    func saveSongPlaying<T>(with track: T) {
         CoreDataManager.Playing.deleteAllObject()
         CoreDataManager.Playing.save(with: track)
     }

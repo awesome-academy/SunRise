@@ -20,6 +20,23 @@ extension PlayingManagedObject {
     @NSManaged public var userID: String?
     @NSManaged public var userName: String?
 
+    func setData( resource track: Track) {
+        self.id = Int32(track.trackID ?? 0)
+        self.title = track.title
+        self.genre = track.genre
+        self.artworkURL = track.artworkURL
+        self.streamURL = track.streamURL
+        self.userName = track.userName
+    }
+    
+    func setData( resource track: FavoriteManagedObject) {
+        self.id = track.id
+        self.title = track.title
+        self.genre = track.genre
+        self.artworkURL = track.artworkURL
+        self.streamURL = track.streamURL
+        self.userName = track.userName
+    }
 }
 
 extension PlayingManagedObject : Identifiable {

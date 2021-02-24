@@ -69,10 +69,10 @@ final class DetailViewController: BaseViewController {
     }
     
     @IBAction func removePlaylistPressed (sender: Any) {
-        
+        viewModel.removeSongFromPlaylist()
     }
     
     @IBAction func addPlaylistPressed (sender: Any) {
-        
+        viewModel.addSongToPlaylist()
     }
 }

@@ -21,7 +21,9 @@ final class LibraryTableViewCell: UITableViewCell, Reusable, NibLoadable {
         userNameLabel.text = .none
     }
     
-    func binding(type: Type) {
+    func binding(type: Type,
+               playlistName: [String],
+               at row: Int) {
         switch type {
         case .createPlaylist:
             songImage.image = UIImage(systemName: "plus")
@@ -29,8 +31,10 @@ final class LibraryTableViewCell: UITableViewCell, Reusable, NibLoadable {
         case .favorite:
             songImage.image = UIImage(named: "ic-heart-red")
             playlistLabel.text = "Liked Songs"
-        default:
-            break
+        case .playlist:
+            songImage.image = UIImage(named: "ic-playlist-white")
+            playlistLabel.text = playlistName[row - 2]
+            userNameLabel.text = "by Kim Hao"
         }
     }
 }

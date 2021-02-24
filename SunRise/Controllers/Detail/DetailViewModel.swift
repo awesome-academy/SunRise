@@ -49,4 +49,12 @@ final class DetailViewModel {
         }
         return false
     }
+    
+    func addSongToPlaylist() {
+
+    }
+    
+    func removeSongFromPlaylist() {
+        
+    }
 }

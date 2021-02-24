@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController" customModule="SunRise" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaylistViewController" customModule="SunRise" customModuleProvider="target">
             <connections>
                 <outlet property="favoriteButton" destination="rRg-4g-vWv" id="xQq-N8-E6w"/>
                 <outlet property="playButton" destination="c0z-B2-8MN" id="Ceq-Xt-HBW"/>
@@ -23,8 +23,22 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOR-ai-cGJ">
+                    <rect key="frame" x="110" y="69" width="194" height="48"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="ADD SONGS"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addSongsPressedWithSender:" destination="-2" eventType="touchUpInside" id="6Yo-pV-i9Z"/>
+                    </connections>
+                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRP-rb-Eim">
-                    <rect key="frame" x="0.0" y="44" width="414" height="743"/>
+                    <rect key="frame" x="0.0" y="137" width="414" height="650"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,12 +110,15 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="FOR-ai-cGJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="0FK-g4-USb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FOR-ai-cGJ" secondAttribute="trailing" constant="110" id="4JX-Wv-hg0"/>
+                <constraint firstItem="oRP-rb-Eim" firstAttribute="top" secondItem="FOR-ai-cGJ" secondAttribute="bottom" constant="20" id="9Ut-w2-FCI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oRP-rb-Eim" secondAttribute="trailing" id="Ars-fW-vNh"/>
                 <constraint firstItem="CnT-tT-m5I" firstAttribute="top" secondItem="oRP-rb-Eim" secondAttribute="bottom" id="ESa-jV-RBJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CnT-tT-m5I" secondAttribute="trailing" id="INa-UT-a26"/>
                 <constraint firstItem="CnT-tT-m5I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="IgV-gg-pFJ"/>
-                <constraint firstItem="oRP-rb-Eim" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="J6w-8h-uAU"/>
                 <constraint firstItem="CnT-tT-m5I" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="800" id="P3r-ei-67Q"/>
+                <constraint firstItem="FOR-ai-cGJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="110" id="Tt3-eg-ztZ"/>
                 <constraint firstItem="oRP-rb-Eim" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="k1t-nN-XCI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CnT-tT-m5I" secondAttribute="bottom" id="lJj-lK-adf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oRP-rb-Eim" secondAttribute="bottom" constant="75" id="rJO-T3-RbS"/>

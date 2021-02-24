@@ -1,14 +1,9 @@
 import Foundation
 
-class LibraryViewModel {
+class PlaylistViewModel {
     
     private var favorites = [FavoriteManagedObject]()
-    var playlists = [String : [PlaylistManagedObject]]() {
-        didSet {
-            playlistNames = Array(playlists.keys).sorted()
-        }
-    }
-    var playlistNames = [String]()
+    var playlists = [PlaylistManagedObject]()
     let player = Player.shared
     var songs = [String: [Track]]() {
         didSet {
@@ -16,6 +11,9 @@ class LibraryViewModel {
         }
     }
     
+    init(playlists: [PlaylistManagedObject]) {
+        self.playlists = playlists
+    }
     // MARK: - CoreData
     
     func saveFavorite() {
@@ -40,13 +38,5 @@ class LibraryViewModel {
     
     func saveSongPlaying(with track: Track) {
         player.saveSongPlaying(with: track)
-    }
-    
-    func fetchPlaylist() {
-        let playlists = CoreDataManager.Playlist.fetchData()
-        let groupByPlaylistName = Dictionary(grouping: playlists) { playlists -> String in
-            return (playlists.playlistName ?? "")
-        }
-        self.playlists = groupByPlaylistName
     }
 }

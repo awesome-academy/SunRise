@@ -14,7 +14,6 @@ final class LibraryViewController: BaseViewController {
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var userTitle: UILabel!
-    
     private let viewModel = LibraryViewModel()
     
     override func viewDidLoad() {
@@ -35,7 +34,6 @@ final class LibraryViewController: BaseViewController {
         tableView.dataSource = self
         
         tableView.register(LibraryTableViewCell.nib, forCellReuseIdentifier: LibraryTableViewCell.reuseIdentifier)
-        
     }
     
     override func setupUI() {
@@ -52,6 +50,7 @@ final class LibraryViewController: BaseViewController {
     
     private func updateData() {
         viewModel.fetchFavorite()
+        viewModel.fetchPlaylist()
     }
     
     private func updateUI() {
@@ -94,7 +93,7 @@ final class LibraryViewController: BaseViewController {
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        10
+        return (2 + viewModel.playlists.keys.count)
     }
     
     func tableView(_ tableView: UITableView,
@@ -103,26 +102,31 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
                                                   for: indexPath) as? LibraryTableViewCell else { return LibraryTableViewCell() }
         cell.selectionStyle = .none
         
-        if let cellType = Type(rawValue: indexPath.row) {
-            cell.binding(type: cellType)
-        }
+        let cellType = Type(rawValue: indexPath.row) ?? .playlist
+        cell.binding(type: cellType,
+                     playlistName: viewModel.playlistNames, at: indexPath.row)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
-        if let cellType = Type(rawValue: indexPath.row) {
-            switch cellType {
-            case .createPlaylist:
-                break
-            case .favorite:
-                let vc = FavoriteViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                break
-            }
+        let cellType = Type(rawValue: indexPath.row) ?? .playlist
+        switch cellType {
+        case .createPlaylist:
+            let vc = CreatePlaylistViewController()
+            self.navigationController?.pushViewController( vc, animated: true)
+        case .favorite:
+            let vc = FavoriteViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .playlist:
+            let key = viewModel.playlistNames[indexPath.row - 2]
+            let playlist = viewModel.playlists[key] ?? [PlaylistManagedObject]()
+            let vc = PlaylistViewController(playlists: playlist)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     func tableView(_ tableView: UITableView,

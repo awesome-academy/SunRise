@@ -1,18 +1,17 @@
 import UIKit
 
-private enum FavoriteConstraints {
-    static let HeightForRowTableView: CGFloat = 160
+private enum PlaylistConstraints{
+    static let heightForRowTableView: CGFloat = 160
 }
 
-final class FavoriteViewController: BaseViewController {
-    
+final class PlaylistViewController: BaseViewController {
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var playButton: UIButton!
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var userTitle: UILabel!
     
-    private let viewModel = FavoriteViewModel()
+    private var viewModel: PlaylistViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +24,27 @@ final class FavoriteViewController: BaseViewController {
         updateUI()
     }
     
+    init(playlists: [PlaylistManagedObject]) {
+        self.viewModel = PlaylistViewModel(playlists: playlists)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Config
     
     override func setupData() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(FavoriteTableViewCell.nib,
-                           forCellReuseIdentifier: FavoriteTableViewCell.reuseIdentifier)
+        
+        tableView.register(PlaylistTableViewCell.nib, forCellReuseIdentifier: PlaylistTableViewCell.reuseIdentifier)
         
     }
     
     override func setupUI() {
-        self.navigationItem.title = "Liked Songs"
+        self.navigationItem.title = viewModel.playlists.first?.playlistName
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
         self.navigationItem.leftBarButtonItem?.tintColor = .white
         
@@ -87,58 +95,41 @@ final class FavoriteViewController: BaseViewController {
         favoriteButton.isSelected.toggle()
         
         if favoriteButton.isSelected {
-            viewModel.saveFavorite(id: viewModel.songPlayingID)
+            viewModel.saveFavorite()
         } else {
-            viewModel.removeFavorite(id: viewModel.songPlayingID)
+            viewModel.removeFavorite()
         }
     }
     
+    @IBAction func addSongsPressed(sender: Any) {
+        
+    }
 }
 
-extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
+extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        return viewModel.favorites.count
+        return viewModel.playlists.count - 1
     }
     
     func tableView(_ tableView: UITableView,
                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier,
-                                                 for: indexPath) as? FavoriteTableViewCell else { return FavoriteTableViewCell() }
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlaylistTableViewCell.reuseIdentifier,
+                                                  for: indexPath) as? PlaylistTableViewCell else { return PlaylistTableViewCell() }
         cell.selectionStyle = .none
         
-        let item = viewModel.favorites[indexPath.row]
-        cell.binding(track: item)
-        
-        cell.isFavoriteButtonPressed = { [weak self] in
-            self?.viewModel.removeFavorite(id: Int(item.id))
-            self?.updateData()
-            self?.updateUI()
-        }
-        
-        cell.isDetailButtonPressed = { [weak self] in
-            self?.navigationController?.pushViewController(DetailViewController(favorites: item),
-                                                  animated: true)
-        }
+        let track = viewModel.playlists[indexPath.row]
+        cell.binding(track: track)
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        let item = viewModel.favorites[indexPath.row]
         
-        titleLabel.text = item.title
-        userTitle.text = item.userName
-        favoriteButton.isSelected = viewModel.isLiked(with: Int(item.id))
-        playButton.isSelected = true
-        
-        viewModel.player.playMusic(with: item)
-
     }
     
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return FavoriteConstraints.HeightForRowTableView
+        return PlaylistConstraints.heightForRowTableView
     }
 }

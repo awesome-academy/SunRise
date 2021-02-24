@@ -18,8 +18,19 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Playlist" representedClassName="PlaylistManagedObject" syncable="YES">
+        <attribute name="artworkURL" optional="YES" attributeType="String"/>
+        <attribute name="genre" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="playlistName" optional="YES" attributeType="String"/>
+        <attribute name="streamURL" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
-        <element name="Favorite" positionX="63" positionY="-54" width="128" height="148"/>
-        <element name="Playing" positionX="63" positionY="0" width="128" height="148"/>
+        <element name="Favorite" positionX="219.546875" positionY="-185.53515625" width="128" height="148"/>
+        <element name="Playing" positionX="-2.6171875" positionY="-156.40234375" width="128" height="148"/>
+        <element name="Playlist" positionX="108" positionY="-117" width="128" height="163"/>
     </elements>
 </model>

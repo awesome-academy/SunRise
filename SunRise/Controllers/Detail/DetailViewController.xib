@@ -85,6 +85,9 @@
                                     <state key="normal" title="Remove from this Playlist">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="removePlaylistPressedWithSender:" destination="-1" eventType="touchUpInside" id="DFQ-JO-ZGg"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
@@ -106,6 +109,9 @@
                                     <state key="normal" title="Add to Playlist">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="addPlaylistPressedWithSender:" destination="-1" eventType="touchUpInside" id="LbV-9u-e0V"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>

@@ -9,8 +9,8 @@ struct Track: Codable {
     let streamURL: String?
     let artworkURL: String?
     
-    let userID: Int
-    let userName: String
+    let userID: Int?
+    let userName: String?
 
     enum SongKeys: String, CodingKey {
         case trackID = "id"

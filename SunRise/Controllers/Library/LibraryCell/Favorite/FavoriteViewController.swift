@@ -93,6 +93,10 @@ final class FavoriteViewController: BaseViewController {
         }
     }
     
+    @IBAction func playerMusicPressed(sender: Any) {
+        let vc = PlayerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {

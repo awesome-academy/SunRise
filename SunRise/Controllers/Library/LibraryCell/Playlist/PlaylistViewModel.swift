@@ -44,7 +44,8 @@ class PlaylistViewModel {
     
     // Playlist
     func addSongToPlaylist(with track: Track) {
-        if let playlistName = playlists.first?.playlistName {
+        if let playlistName = playlists.first?.playlistName, let trackID = track.trackID {
+            if CoreDataManager.Playlist.findItem(playlistName: playlistName, with: trackID) { return }
             CoreDataManager.Playlist.addTrackToPlaylist(playlistName: playlistName, with: track)
         }
     }

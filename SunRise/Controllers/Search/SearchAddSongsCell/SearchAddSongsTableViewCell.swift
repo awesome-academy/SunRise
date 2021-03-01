@@ -23,6 +23,7 @@ final class SearchAddSongsTableViewCell: UITableViewCell, Reusable, NibLoadable 
         songImage.image = .none
         titleLabel.text = .none
         userLabel.text = .none
+        addSongButton.isUserInteractionEnabled = true
     }
     
     // MARK: - Config

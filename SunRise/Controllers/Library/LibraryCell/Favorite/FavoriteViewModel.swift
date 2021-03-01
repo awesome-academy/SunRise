@@ -28,7 +28,7 @@ class FavoriteViewModel {
     
     func removeFavorite(id: Int?) {
         if let id = id {
-            player.removeFavorite(id: id)
+            CoreDataManager.Favorite.remove(with: id)
         }
     }
     

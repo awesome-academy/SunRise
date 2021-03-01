@@ -42,7 +42,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chance The Rapper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ne-sn-IgI">
-                            <rect key="frame" x="58" y="42" width="296" height="19"/>
+                            <rect key="frame" x="58" y="42" width="295" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,7 +60,7 @@
                                 <action selector="playPressedWithSender:" destination="-1" eventType="touchUpInside" id="ZEP-kl-s54"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rRg-4g-vWv">
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rRg-4g-vWv">
                             <rect key="frame" x="369" y="23" width="30" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,23 +72,33 @@
                                 <action selector="favoritePressedWithSender:" destination="-1" eventType="touchUpInside" id="IMy-Me-Nt8"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RzH-bH-H2s">
+                            <rect key="frame" x="58" y="0.0" width="296" height="75"/>
+                            <connections>
+                                <action selector="playerMusicPressedWithSender:" destination="-1" eventType="touchUpInside" id="wZa-Yi-lJt"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="6ne-sn-IgI" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="3dN-hc-4dq"/>
+                        <constraint firstAttribute="bottom" secondItem="RzH-bH-H2s" secondAttribute="bottom" id="DC1-67-rsj"/>
                         <constraint firstItem="6ne-sn-IgI" firstAttribute="top" secondItem="iRQ-CZ-Hfn" secondAttribute="bottom" constant="5" id="KEe-h9-V1C"/>
                         <constraint firstAttribute="trailing" secondItem="rRg-4g-vWv" secondAttribute="trailing" constant="15" id="Koo-Te-Lhg"/>
                         <constraint firstAttribute="bottom" secondItem="rRg-4g-vWv" secondAttribute="bottom" constant="15" id="KqE-9a-dxk"/>
                         <constraint firstItem="iRQ-CZ-Hfn" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="NgL-uH-vd8"/>
+                        <constraint firstItem="RzH-bH-H2s" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="SDK-mx-wol"/>
                         <constraint firstAttribute="bottom" secondItem="6ne-sn-IgI" secondAttribute="bottom" constant="15.5" id="T9A-9h-nfS"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="leading" secondItem="CnT-tT-m5I" secondAttribute="leading" constant="15" id="Vyr-jd-pUV"/>
                         <constraint firstAttribute="bottom" secondItem="c0z-B2-8MN" secondAttribute="bottom" constant="15" id="Wvz-hV-5R1"/>
+                        <constraint firstItem="RzH-bH-H2s" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" id="Z0o-AB-01y"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="20" id="bNY-Vt-T9c"/>
                         <constraint firstItem="iRQ-CZ-Hfn" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="10" id="c5M-YA-Ln0"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="iRQ-CZ-Hfn" secondAttribute="trailing" constant="16" id="eRF-Pq-hvT"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="23" id="sKG-R7-2ce"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="6ne-sn-IgI" secondAttribute="trailing" constant="15" id="te7-U8-e6l"/>
+                        <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="RzH-bH-H2s" secondAttribute="trailing" constant="15" id="yKL-3j-VEC"/>
                     </constraints>
                 </view>
             </subviews>

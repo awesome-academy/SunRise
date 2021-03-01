@@ -88,6 +88,11 @@ final class LibraryViewController: BaseViewController {
             viewModel.removeFavorite()
         }
     }
+    
+    @IBAction func playerMusicPressed(sender: Any) {
+        let vc = PlayerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {

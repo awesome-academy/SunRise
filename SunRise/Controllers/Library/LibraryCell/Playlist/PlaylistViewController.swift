@@ -122,6 +122,11 @@ final class PlaylistViewController: BaseViewController {
     @IBAction func addSongsPressed(sender: Any) {
         self.navigationController?.pushViewController(SearchViewController(), animated: true)
     }
+    
+    @IBAction func playerMusicPressed(sender: Any) {
+        let vc = PlayerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {

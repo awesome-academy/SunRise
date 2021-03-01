@@ -158,6 +158,11 @@ final class SearchViewController: BaseViewController {
         }
         updateUI()
     }
+    
+    @IBAction func playerMusicPressed(sender: Any) {
+        let vc = PlayerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {

@@ -1,5 +1,7 @@
 import Foundation
 import AVFoundation
+import MediaPlayer
+import UIKit
 
 enum State {
     case isPlaying
@@ -25,7 +27,13 @@ final class Player {
         }
     }
     
-    private init() {}
+    private init() {
+        NotificationCenter.default.addObserver(self,
+                                        selector: #selector(playerDidReachEnd),
+                                        name: Notification.Name.AVPlayerItemDidPlayToEndTime,
+                                        object: nil)
+
+    }
     
     // MARK: - Play music
     
@@ -77,16 +85,12 @@ final class Player {
                 state = .isPlaying
                 songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
-                
-                NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(playerDidReachEnd),
-                                                       name: Notification.Name.AVPlayerItemDidPlayToEndTime,
-                                                       object: nil)
             }
         }
     }
     
     @objc func playerDidReachEnd() {
+        audioPlayer.seek(to: .zero)
         state = .stopped
     }
     
@@ -101,6 +105,26 @@ final class Player {
         }
 
         return nil
+    }
+    
+    func getSecondCurrentTime() -> Double {
+        return CMTimeGetSeconds(audioPlayer.currentItem?.currentTime() ?? CMTime())
+    }
+    
+    func getSecondDuration() -> Double {
+        return CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? CMTime() )
+    }
+    
+    func playAtRate(rate: Float) {
+        let currentCMTime = CMTime(seconds: getSecondDuration() * Double(rate), preferredTimescale: .max)
+        audioPlayer.seek(to: currentCMTime)
+        state = .isPlaying
+    }
+    
+    func autoPlayMusic() {
+        if let track = songs.randomElement()?.value.randomElement() {
+            playMusic(with: track)
+        }
     }
     
     // MARK: - CoreData

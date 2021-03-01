@@ -87,9 +87,9 @@ extension CoreDataManager.Playlist {
         return [PlaylistManagedObject]()
     }
     
-    static func findItem(with id: Int) -> Bool {
+    static func findItem(playlistName: String, with id: Int) -> Bool {
         let request: NSFetchRequest<PlaylistManagedObject> = PlaylistManagedObject.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %i", id)
+        request.predicate = NSPredicate(format: "(playlistName = %@) AND (id == %i)", playlistName, id)
         request.sortDescriptors = [NSSortDescriptor(key: "id",
                                    ascending: true)]
         

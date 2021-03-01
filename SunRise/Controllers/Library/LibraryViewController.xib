@@ -72,6 +72,12 @@
                                 <action selector="favoritePressedWithSender:" destination="-1" eventType="touchUpInside" id="IMy-Me-Nt8"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7br-Ol-txu">
+                            <rect key="frame" x="58" y="0.0" width="296" height="75"/>
+                            <connections>
+                                <action selector="playerMusicPressedWithSender:" destination="-1" eventType="touchUpInside" id="lBf-NR-LOT"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -84,11 +90,15 @@
                         <constraint firstAttribute="bottom" secondItem="6ne-sn-IgI" secondAttribute="bottom" constant="15.5" id="T9A-9h-nfS"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="leading" secondItem="CnT-tT-m5I" secondAttribute="leading" constant="15" id="Vyr-jd-pUV"/>
                         <constraint firstAttribute="bottom" secondItem="c0z-B2-8MN" secondAttribute="bottom" constant="15" id="Wvz-hV-5R1"/>
+                        <constraint firstItem="7br-Ol-txu" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" id="ZRI-Uk-KW9"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="20" id="bNY-Vt-T9c"/>
                         <constraint firstItem="iRQ-CZ-Hfn" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="10" id="c5M-YA-Ln0"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="iRQ-CZ-Hfn" secondAttribute="trailing" constant="16" id="eRF-Pq-hvT"/>
+                        <constraint firstAttribute="bottom" secondItem="7br-Ol-txu" secondAttribute="bottom" id="fPl-G7-lXg"/>
+                        <constraint firstItem="7br-Ol-txu" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="hLc-fG-Oo5"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="23" id="sKG-R7-2ce"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="6ne-sn-IgI" secondAttribute="trailing" constant="15" id="te7-U8-e6l"/>
+                        <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="7br-Ol-txu" secondAttribute="trailing" constant="15" id="wOq-Py-KJM"/>
                     </constraints>
                 </view>
             </subviews>

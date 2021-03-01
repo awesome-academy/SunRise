@@ -86,21 +86,31 @@
                                 <action selector="favoritePlayerPressedWithSender:" destination="-1" eventType="touchUpInside" id="Njx-De-Ub7"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBJ-hK-QAJ">
+                            <rect key="frame" x="58" y="0.0" width="296" height="75"/>
+                            <connections>
+                                <action selector="playerMusicPressedWithSender:" destination="-1" eventType="touchUpInside" id="PHA-gp-z4B"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="YBJ-hK-QAJ" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" id="0eb-s2-9am"/>
                         <constraint firstItem="6ne-sn-IgI" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="3dN-hc-4dq"/>
                         <constraint firstItem="6ne-sn-IgI" firstAttribute="top" secondItem="iRQ-CZ-Hfn" secondAttribute="bottom" constant="5" id="KEe-h9-V1C"/>
                         <constraint firstAttribute="trailing" secondItem="rRg-4g-vWv" secondAttribute="trailing" constant="15" id="Koo-Te-Lhg"/>
                         <constraint firstAttribute="bottom" secondItem="rRg-4g-vWv" secondAttribute="bottom" constant="15" id="KqE-9a-dxk"/>
                         <constraint firstItem="iRQ-CZ-Hfn" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="NgL-uH-vd8"/>
+                        <constraint firstItem="YBJ-hK-QAJ" firstAttribute="leading" secondItem="c0z-B2-8MN" secondAttribute="trailing" constant="15" id="Pd7-bv-D6l"/>
                         <constraint firstAttribute="bottom" secondItem="6ne-sn-IgI" secondAttribute="bottom" constant="15.5" id="T9A-9h-nfS"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="leading" secondItem="CnT-tT-m5I" secondAttribute="leading" constant="15" id="Vyr-jd-pUV"/>
                         <constraint firstAttribute="bottom" secondItem="c0z-B2-8MN" secondAttribute="bottom" constant="15" id="Wvz-hV-5R1"/>
                         <constraint firstItem="c0z-B2-8MN" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="20" id="bNY-Vt-T9c"/>
                         <constraint firstItem="iRQ-CZ-Hfn" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="10" id="c5M-YA-Ln0"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="iRQ-CZ-Hfn" secondAttribute="trailing" constant="16" id="eRF-Pq-hvT"/>
+                        <constraint firstAttribute="bottom" secondItem="YBJ-hK-QAJ" secondAttribute="bottom" id="hWB-Gh-N7P"/>
+                        <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="YBJ-hK-QAJ" secondAttribute="trailing" constant="15" id="mFX-GX-aKY"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="top" secondItem="CnT-tT-m5I" secondAttribute="top" constant="23" id="sKG-R7-2ce"/>
                         <constraint firstItem="rRg-4g-vWv" firstAttribute="leading" secondItem="6ne-sn-IgI" secondAttribute="trailing" constant="15" id="te7-U8-e6l"/>
                     </constraints>

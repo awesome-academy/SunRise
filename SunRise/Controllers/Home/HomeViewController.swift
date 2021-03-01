@@ -91,6 +91,11 @@ final class HomeViewController: BaseViewController {
             viewModel.removeFavorite()
         }
     }
+    
+    @IBAction func playerMusicPressed(sender: Any) {
+        let vc = PlayerViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate,

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330C26B025EC8D8000F3DE79 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330C26AD25EC8D8000F3DE79 /* PlayerViewController.xib */; };
+		330C26B125EC8D8000F3DE79 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */; };
+		330C26B225EC8D8100F3DE79 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26AF25EC8D8000F3DE79 /* PlayerViewController.swift */; };
 		331AF11725E8AE8300C19018 /* PlaylistManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331AF11625E8AE8300C19018 /* PlaylistManagedObject.swift */; };
 		331AF11A25E8AE9E00C19018 /* CoreDataManager.Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331AF11925E8AE9E00C19018 /* CoreDataManager.Playlist.swift */; };
 		33203CA325E8B335003D91B8 /* PlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33203C9D25E8B334003D91B8 /* PlaylistViewController.xib */; };
@@ -76,6 +79,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330C26AD25EC8D8000F3DE79 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		330C26AF25EC8D8000F3DE79 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		331AF11625E8AE8300C19018 /* PlaylistManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistManagedObject.swift; sourceTree = "<group>"; };
 		331AF11925E8AE9E00C19018 /* CoreDataManager.Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.Playlist.swift; sourceTree = "<group>"; };
 		33203C9D25E8B334003D91B8 /* PlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistViewController.xib; sourceTree = "<group>"; };
@@ -157,6 +163,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330C26AC25EC8D8000F3DE79 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				330C26AF25EC8D8000F3DE79 /* PlayerViewController.swift */,
+				330C26AD25EC8D8000F3DE79 /* PlayerViewController.xib */,
+				330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		331AF11525E8AE8300C19018 /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,8 +212,8 @@
 		33203CBC25E8B385003D91B8 /* SearchResultCell */ = {
 			isa = PBXGroup;
 			children = (
-				33203CBD25E8B385003D91B8 /* SearchResultTableViewCell.xib */,
 				33203CBE25E8B385003D91B8 /* SearchResultTableViewCell.swift */,
+				33203CBD25E8B385003D91B8 /* SearchResultTableViewCell.xib */,
 			);
 			path = SearchResultCell;
 			sourceTree = "<group>";
@@ -313,6 +329,7 @@
 		335F461225CFEF30007D1BC8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				330C26AC25EC8D8000F3DE79 /* Player */,
 				3397BCA725E48C9D00D377FD /* Detail */,
 				33C4E6A325E33CA400F2EBEF /* Core */,
 				33BAF00D25D0D43F0073B31F /* Base */,
@@ -555,6 +572,7 @@
 				33C4E6E825E3A2D300F2EBEF /* LibraryTableViewCell.xib in Resources */,
 				33502DFD25CD4BA000D20B10 /* LaunchScreen.storyboard in Resources */,
 				3327EF3125DF533200C74CF5 /* GenreTableViewCell.xib in Resources */,
+				330C26B025EC8D8000F3DE79 /* PlayerViewController.xib in Resources */,
 				33203CAF25E8B345003D91B8 /* CreatePlaylistViewController.xib in Resources */,
 				33502DFA25CD4BA000D20B10 /* Assets.xcassets in Resources */,
 				33203CC425E8B385003D91B8 /* SearchResultTableViewCell.xib in Resources */,
@@ -599,6 +617,7 @@
 				331AF11725E8AE8300C19018 /* PlaylistManagedObject.swift in Sources */,
 				3327EF4C25DF538900C74CF5 /* String+Extension.swift in Sources */,
 				3327EF3225DF533200C74CF5 /* SongCollectionViewCell.swift in Sources */,
+				330C26B125EC8D8000F3DE79 /* PlayerViewModel.swift in Sources */,
 				33C4E6AB25E33CF200F2EBEF /* HomeViewModel.swift in Sources */,
 				3327EF4925DF535000C74CF5 /* API.Music.swift in Sources */,
 				33203CA625E8B335003D91B8 /* PlaylistViewController.swift in Sources */,
@@ -618,6 +637,7 @@
 				3327EF4825DF535000C74CF5 /* API.swift in Sources */,
 				3327EF6B25DFA84A00C74CF5 /* Model.xcdatamodeld in Sources */,
 				3397BCAD25E48D3E00D377FD /* DetailViewController.swift in Sources */,
+				330C26B225EC8D8100F3DE79 /* PlayerViewController.swift in Sources */,
 				33203CB425E8B357003D91B8 /* UINavigationController+Extension.swift in Sources */,
 				33203CA725E8B335003D91B8 /* PlaylistViewModel.swift in Sources */,
 				3327EF4725DF535000C74CF5 /* API.Manager.swift in Sources */,

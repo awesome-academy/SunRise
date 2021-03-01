@@ -31,7 +31,7 @@ final class FavoriteViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FavoriteTableViewCell.nib,
-                           forCellReuseIdentifier: FavoriteTableViewCell.reuseIdentifier)
+                        forCellReuseIdentifier: FavoriteTableViewCell.reuseIdentifier)
         
     }
     

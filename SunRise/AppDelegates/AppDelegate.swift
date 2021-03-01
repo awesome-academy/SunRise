@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = FileManager.default.urls(for: .documentDirectory,
                                            in: .userDomainMask)
         print("URL: \(url[url.count-1] as URL)")
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: AVAudioSession.Category.playback.rawValue))
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Background: \(error)")
+        }
+
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        self.becomeFirstResponder()
+        
         return true
     }
 

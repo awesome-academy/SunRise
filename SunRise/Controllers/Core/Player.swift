@@ -35,6 +35,67 @@ final class Player {
 
     }
     
+    // MARK: - Lock screen
+    
+    func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { [weak self] event in
+            if self?.audioPlayer.rate == 0.0 {
+                self?.state = .isPlaying
+                return .success
+            }
+            return .commandFailed
+        }
+
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { [weak self] event in
+            if self?.audioPlayer.rate == 1.0 {
+                self?.state = .stopped
+                return .success
+            }
+            return .commandFailed
+        }
+        
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.nextTrackCommand.addTarget { [weak self] event in
+            self?.autoPlayMusic()
+            return .success
+        }
+        
+        commandCenter.previousTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.addTarget { [weak self] event in
+            self?.autoPlayMusic()
+            return .success
+        }
+    }
+    
+    func setupNowPlaying(title: String?, userName: String?, artworkURL: String?) {
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = title
+        
+        nowPlayingInfo[MPMediaItemPropertyArtist] = userName
+        
+        artworkURL?.downloadImage() { result in
+            switch result {
+            case .failure(_):
+                break
+            case .success(let image):
+                if let image = image {
+                    nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                        MPMediaItemArtwork(boundsSize: CGSize(width: 45, height: 45)) { size in
+                            return image
+                    }
+                }
+            }
+        }
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        
+
+    }
+    
     // MARK: - Play music
     
     func addSongPlayer(streamUrl: String?, completion: (Bool) -> Void) {
@@ -55,11 +116,7 @@ final class Player {
                 state = .isPlaying
                 songPlayingID = track.trackID
                 saveSongPlaying(with: track)
-                
-                NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(playerDidReachEnd),
-                                                       name: Notification.Name.AVPlayerItemDidPlayToEndTime,
-                                                       object: nil)
+                setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
         }
     }
@@ -70,11 +127,7 @@ final class Player {
                 state = .isPlaying
                 songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
-                
-                NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(playerDidReachEnd),
-                                                       name: Notification.Name.AVPlayerItemDidPlayToEndTime,
-                                                       object: nil)
+                setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
         }
     }
@@ -85,6 +138,7 @@ final class Player {
                 state = .isPlaying
                 songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
+                setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
         }
     }

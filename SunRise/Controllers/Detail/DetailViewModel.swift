@@ -46,7 +46,7 @@ final class DetailViewModel {
     }
     
     func addSongToPlaylist() {
-
+        
     }
     
     func removeSongFromPlaylist() {

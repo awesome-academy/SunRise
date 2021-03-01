@@ -8,7 +8,6 @@ final class DetailViewController: BaseViewController {
     @IBOutlet weak private var favoriteButton: UIButton!
     
     private let viewModel: DetailViewModel
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -79,6 +78,32 @@ final class DetailViewController: BaseViewController {
     }
     
     @IBAction func addPlaylistPressed (sender: Any) {
-        viewModel.addSongToPlaylist()
+        addToPlaylistAlert()
+    }
+    
+    // MARK: Private Func
+    private func addToPlaylistAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+           
+        let contentViewController = AddSongPlaylistViewController()
+        contentViewController.preferredContentSize = contentViewController.view.frame.size
+        alertController.setValue(contentViewController, forKey: "contentViewController")
+        alertController.view.backgroundColor = .white
+    
+        
+        contentViewController.onPlaylistNameSelected = { [weak self] playlistName in
+            self?.viewModel.playlistName = playlistName
+        }
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            if let playlistName = self?.viewModel.playlistName {
+                self?.viewModel.addSongToPlaylist(name: playlistName)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }

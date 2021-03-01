@@ -5,6 +5,7 @@ final class DetailViewModel {
     private var favorite: FavoriteManagedObject?
     private var playlist: PlaylistManagedObject?
     private let player = Player.shared
+    var playlistName: String?
     
     // MARK: - Init
     
@@ -45,8 +46,8 @@ final class DetailViewModel {
         return CoreDataManager.Favorite.findItem(with: Int(((favorite?.id ?? playlist?.id) ?? 0)))
     }
     
-    func addSongToPlaylist() {
-        
+    func addSongToPlaylist(name: String) {
+        CoreDataManager.Playlist.addTrackToPlaylist(playlistName: name, with: playlist ?? favorite)
     }
     
     func removeSongFromPlaylist() {

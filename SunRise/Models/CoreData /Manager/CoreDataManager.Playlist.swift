@@ -4,12 +4,19 @@ import CoreData
 
 extension CoreDataManager.Playlist {
     
-    static func addTrackToPlaylist(playlistName: String, with track: Track) {
+    static func addTrackToPlaylist<T>(playlistName: String, with track: T) {
         if let managedContext = CoreDataManager.appDelegate?.persistentContainer.viewContext {
             let playlistMO = PlaylistManagedObject(context: managedContext)
             
-            
-            playlistMO.setData(playlistName: playlistName, resource: track)
+            if let track = track as? Track {
+                playlistMO.setData(playlistName: playlistName, resource: track)
+            }
+            else if let track = track as? FavoriteManagedObject{
+                playlistMO.setData(playlistName: playlistName, resource: track)
+            }
+            else if let track = track as? PlaylistManagedObject{
+                playlistMO.setData(playlistName: playlistName, resource: track)
+            }
         
             do {
                 try managedContext.save()

@@ -10,6 +10,9 @@
 		330C26B025EC8D8000F3DE79 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330C26AD25EC8D8000F3DE79 /* PlayerViewController.xib */; };
 		330C26B125EC8D8000F3DE79 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */; };
 		330C26B225EC8D8100F3DE79 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26AF25EC8D8000F3DE79 /* PlayerViewController.swift */; };
+		330C26BB25ECC6AF00F3DE79 /* AddSongPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26B925ECC6AF00F3DE79 /* AddSongPlaylistViewController.swift */; };
+		330C26BC25ECC6AF00F3DE79 /* AddSongPlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330C26BA25ECC6AF00F3DE79 /* AddSongPlaylistViewController.xib */; };
+		330C26C325ECCA5300F3DE79 /* AddSongPlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C26C225ECCA5300F3DE79 /* AddSongPlaylistViewModel.swift */; };
 		331AF11725E8AE8300C19018 /* PlaylistManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331AF11625E8AE8300C19018 /* PlaylistManagedObject.swift */; };
 		331AF11A25E8AE9E00C19018 /* CoreDataManager.Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331AF11925E8AE9E00C19018 /* CoreDataManager.Playlist.swift */; };
 		33203CA325E8B335003D91B8 /* PlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33203C9D25E8B334003D91B8 /* PlaylistViewController.xib */; };
@@ -82,6 +85,9 @@
 		330C26AD25EC8D8000F3DE79 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		330C26AF25EC8D8000F3DE79 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		330C26B925ECC6AF00F3DE79 /* AddSongPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPlaylistViewController.swift; sourceTree = "<group>"; };
+		330C26BA25ECC6AF00F3DE79 /* AddSongPlaylistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddSongPlaylistViewController.xib; sourceTree = "<group>"; };
+		330C26C225ECCA5300F3DE79 /* AddSongPlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPlaylistViewModel.swift; sourceTree = "<group>"; };
 		331AF11625E8AE8300C19018 /* PlaylistManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistManagedObject.swift; sourceTree = "<group>"; };
 		331AF11925E8AE9E00C19018 /* CoreDataManager.Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.Playlist.swift; sourceTree = "<group>"; };
 		33203C9D25E8B334003D91B8 /* PlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistViewController.xib; sourceTree = "<group>"; };
@@ -171,6 +177,16 @@
 				330C26AE25EC8D8000F3DE79 /* PlayerViewModel.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		330C26B825ECC64E00F3DE79 /* AddToPlaylist */ = {
+			isa = PBXGroup;
+			children = (
+				330C26B925ECC6AF00F3DE79 /* AddSongPlaylistViewController.swift */,
+				330C26BA25ECC6AF00F3DE79 /* AddSongPlaylistViewController.xib */,
+				330C26C225ECCA5300F3DE79 /* AddSongPlaylistViewModel.swift */,
+			);
+			path = AddToPlaylist;
 			sourceTree = "<group>";
 		};
 		331AF11525E8AE8300C19018 /* Playlist */ = {
@@ -373,6 +389,7 @@
 		3397BCA725E48C9D00D377FD /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				330C26B825ECC64E00F3DE79 /* AddToPlaylist */,
 				3397BCAA25E48D3E00D377FD /* DetailViewController.swift */,
 				3397BCA825E48D3E00D377FD /* DetailViewController.xib */,
 				3397BCA925E48D3E00D377FD /* DetailViewModel.swift */,
@@ -582,6 +599,7 @@
 				33BAF01E25D0D4A60073B31F /* SearchViewController.xib in Resources */,
 				33C4E6E325E3A2D300F2EBEF /* FavoriteTableViewCell.xib in Resources */,
 				33203CC325E8B385003D91B8 /* SearchHistoryTableViewCell.xib in Resources */,
+				330C26BC25ECC6AF00F3DE79 /* AddSongPlaylistViewController.xib in Resources */,
 				3397BCAB25E48D3E00D377FD /* DetailViewController.xib in Resources */,
 				3327EF3325DF533200C74CF5 /* SongCollectionViewCell.xib in Resources */,
 				33203CC725E8B385003D91B8 /* SearchAddSongsTableViewCell.xib in Resources */,
@@ -621,7 +639,9 @@
 				33C4E6AB25E33CF200F2EBEF /* HomeViewModel.swift in Sources */,
 				3327EF4925DF535000C74CF5 /* API.Music.swift in Sources */,
 				33203CA625E8B335003D91B8 /* PlaylistViewController.swift in Sources */,
+				330C26C325ECCA5300F3DE79 /* AddSongPlaylistViewModel.swift in Sources */,
 				33203CC225E8B385003D91B8 /* SearchHistoryTableViewCell.swift in Sources */,
+				330C26BB25ECC6AF00F3DE79 /* AddSongPlaylistViewController.swift in Sources */,
 				3327EF5925DF6EB700C74CF5 /* NibLoadable.swift in Sources */,
 				33203CC625E8B385003D91B8 /* SearchAddSongsTableViewCell.swift in Sources */,
 				3397BCAC25E48D3E00D377FD /* DetailViewModel.swift in Sources */,

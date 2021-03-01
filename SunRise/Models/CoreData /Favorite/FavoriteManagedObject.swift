@@ -37,6 +37,15 @@ extension FavoriteManagedObject {
         self.streamURL = track.streamURL
         self.userName = track.userName
     }
+    
+    func setData( resource track: PlaylistManagedObject) {
+        self.id = track.id
+        self.title = track.title
+        self.genre = track.genre
+        self.artworkURL = track.artworkURL
+        self.streamURL = track.streamURL
+        self.userName = track.userName
+    }
 }
 
 extension FavoriteManagedObject : Identifiable {

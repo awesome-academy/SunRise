@@ -122,11 +122,32 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         case .playlist:
             let key = viewModel.playlistNames[indexPath.row - 2]
-            let playlist = viewModel.playlists[key] ?? [PlaylistManagedObject]()
-            let vc = PlaylistViewController(playlists: playlist)
+            let playlists = viewModel.playlists[key] ?? [PlaylistManagedObject]()
+
+            let vc = PlaylistViewController(playlists: playlists)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cellType = Type(rawValue: indexPath.row) ?? .playlist
+        
+        if cellType == .playlist {
+            let delete = UIContextualAction(style: .destructive, title: "Delete") {  [weak self] (contextualAction, view, boolValue) in
+                
+                if let item = self?.viewModel.playlistNames[indexPath.row - 2] {
+                    self?.viewModel.removePlaylist(name: item)
+                }
+                
+                self?.tableView.reloadData()
+            }
+            let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+            
+            return swipeActions
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView,

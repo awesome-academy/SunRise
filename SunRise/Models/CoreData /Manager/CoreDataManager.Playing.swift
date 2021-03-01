@@ -14,6 +14,9 @@ extension CoreDataManager.Playing {
             else if let track = track as? FavoriteManagedObject{
                 playingMO.setData(resource: track)
             }
+            else if let track = track as? PlaylistManagedObject{
+                playingMO.setData(resource: track)
+            }
         
             do {
                 try managedContext.save()

@@ -69,4 +69,8 @@ class SearchViewModel {
             }
         }
     }
+    
+    func removeTrack(element: Track) {
+        tracks.removeAll(where: { $0.trackID == element.trackID })
+    }
 }

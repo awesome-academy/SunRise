@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         

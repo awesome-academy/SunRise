@@ -4,16 +4,12 @@ import CoreData
 
 extension CoreDataManager.Playlist {
     
-    static func addTrackToPlaylist<T>(playlistName: String, with track: T) {
+    static func addTrackToPlaylist(playlistName: String, with track: Track) {
         if let managedContext = CoreDataManager.appDelegate?.persistentContainer.viewContext {
             let playlistMO = PlaylistManagedObject(context: managedContext)
             
-            if let track = track as? Track {
-                playlistMO.setData(playlistName: playlistName, resource: track)
-            }
-            else if let track = track as? FavoriteManagedObject{
-                playlistMO.setData(playlistName: playlistName, resource: track)
-            }
+            
+            playlistMO.setData(playlistName: playlistName, resource: track)
         
             do {
                 try managedContext.save()
@@ -43,6 +39,25 @@ extension CoreDataManager.Playlist {
             let request: NSFetchRequest<PlaylistManagedObject> = PlaylistManagedObject.fetchRequest()
             
             request.predicate = NSPredicate(format: "id == \(id)")
+            
+            do {
+                let items = try managedContext.fetch(request)
+                for item in items {
+                    managedContext.delete(item)
+                }
+                try managedContext.save()
+            } catch {
+                print("Error fetching data \(error)")
+            }
+        }
+    }
+    
+    static func removePlaylist(with name: String) {
+        if let managedContext = CoreDataManager.appDelegate?.persistentContainer.viewContext {
+            
+            let request: NSFetchRequest<PlaylistManagedObject> = PlaylistManagedObject.fetchRequest()
+            
+            request.predicate = NSPredicate(format: "playlistName = %@", name)
             
             do {
                 let items = try managedContext.fetch(request)
@@ -98,7 +113,7 @@ extension CoreDataManager.Playlist {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Playlist")
 
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)

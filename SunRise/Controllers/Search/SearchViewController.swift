@@ -1,20 +1,24 @@
 import UIKit
+import NotificationCenter
 
 private enum SearchConstraints{
     static let heightForRowResultSearchTableView: CGFloat = 160
     static let heightForRowHistoryTableView: CGFloat = 45
+    static let heightForFooterTableView: CGFloat = 35
 }
 
 private enum TypeScreen {
     case history
     case resultSearch
+    case resultAddSongs
     
     var heightForRowTableView: CGFloat {
         switch self {
         case .history:
             return SearchConstraints.heightForRowHistoryTableView
-        case .resultSearch:
+        default:
             return SearchConstraints.heightForRowResultSearchTableView
+            
         }
     }
 }
@@ -28,7 +32,10 @@ final class SearchViewController: BaseViewController {
     @IBOutlet weak private var searchTextField: UITextField!
     
     private var viewModel = SearchViewModel()
+    private var typeScreenInit: TypeScreen?
     private var typeSreen: TypeScreen = .history
+    private var playlistNameToAdd: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,10 +59,22 @@ final class SearchViewController: BaseViewController {
         tableView.register(SearchHistoryTableViewCell.nib,
                         forCellReuseIdentifier: SearchHistoryTableViewCell.reuseIdentifier)
         
+        tableView.register(SearchAddSongsTableViewCell.nib,
+                        forCellReuseIdentifier: SearchAddSongsTableViewCell.reuseIdentifier)  
     }
     
     override func setupUI() {
-        self.navigationController?.isNavigationBarHidden = true
+        if self.navigationController?.getPreviousViewController() == self.navigationController?.presentedViewController {
+            typeScreenInit = .resultSearch
+            typeSreen = .history
+            self.navigationController?.isNavigationBarHidden = true
+        } else {
+            typeScreenInit = .resultAddSongs
+            typeSreen = .resultAddSongs
+            self.navigationItem.title = "Add songs"
+            self.navigationController?.isNavigationBarHidden = false
+        }
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
         self.navigationItem.leftBarButtonItem?.tintColor = .white
         
@@ -132,7 +151,7 @@ final class SearchViewController: BaseViewController {
             viewModel.saveHistory(searchText: text)
             viewModel.getResultSearch(with: text) { [weak self]done in
                 if done {
-                    self?.typeSreen = .resultSearch
+                    self?.typeSreen = self?.typeScreenInit ?? .resultSearch
                     self?.updateUI()
                 }
             }
@@ -147,7 +166,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         switch typeSreen {
         case .history:
             return viewModel.searchHistory.count
-        case .resultSearch:
+        default:
             return viewModel.tracks.count
         }
     }
@@ -169,7 +188,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let track = viewModel.tracks[indexPath.row]
             cell.binding(track: track)
             return cell
+        case .resultAddSongs:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchAddSongsTableViewCell.reuseIdentifier,
+                                                      for: indexPath) as? SearchAddSongsTableViewCell else { return SearchAddSongsTableViewCell() }
+            cell.selectionStyle = .none
+            
+            let track = viewModel.tracks[indexPath.row]
+            cell.binding(track: track)
+            
+            cell.isAddButtonPressed = { [weak self] in
+                self?.viewModel.removeTrack(element: track)
+                self?.tableView.reloadData()
+            }
+            return cell
         }
+        
     }
     
     func tableView(_ tableView: UITableView,
@@ -177,7 +210,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         switch typeSreen {
         case .history:
             searchTextField.text = viewModel.searchHistory[indexPath.row]
-        case .resultSearch:
+        default:
             let item = viewModel.tracks[indexPath.row]
             
             titleLabel.text = item.title
@@ -198,7 +231,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         footerView.frame = CGRect(x: 0,
                                   y: 0,
                                   width: self.view.frame.width,
-                                  height: 35)
+                                  height: SearchConstraints.heightForFooterTableView)
         
         let button = UIButton()
         button.frame = footerView.frame

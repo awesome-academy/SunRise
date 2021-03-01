@@ -34,7 +34,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="addSongsPressedWithSender:" destination="-2" eventType="touchUpInside" id="6Yo-pV-i9Z"/>
+                        <action selector="addSongsPressedWithSender:" destination="-1" eventType="touchUpInside" id="0Ik-oz-gI9"/>
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRP-rb-Eim">
@@ -71,7 +71,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
                             </state>
                             <connections>
-                                <action selector="playPressedWithSender:" destination="-1" eventType="touchUpInside" id="ZEP-kl-s54"/>
+                                <action selector="playPlayerPressedWithSender:" destination="-1" eventType="touchUpInside" id="gdY-9d-dWP"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rRg-4g-vWv">
@@ -83,7 +83,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
                             </state>
                             <connections>
-                                <action selector="favoritePressedWithSender:" destination="-1" eventType="touchUpInside" id="IMy-Me-Nt8"/>
+                                <action selector="favoritePlayerPressedWithSender:" destination="-1" eventType="touchUpInside" id="Njx-De-Ub7"/>
                             </connections>
                         </button>
                     </subviews>

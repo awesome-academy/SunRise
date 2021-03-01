@@ -41,6 +41,10 @@ final class PlaylistViewController: BaseViewController {
         
         tableView.register(PlaylistTableViewCell.nib, forCellReuseIdentifier: PlaylistTableViewCell.reuseIdentifier)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAddSongNotification(notification:)), name: .addSongsPlaylist, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRemoveSongNotification), name: .removeSongPlaylist, object: nil)
+        
     }
     
     override func setupUI() {
@@ -83,26 +87,40 @@ final class PlaylistViewController: BaseViewController {
         }
     }
     
+    @objc func handleAddSongNotification(notification: Notification) {
+        if let track = notification.object as? Track {
+            viewModel.addSongToPlaylist(with: track)
+            viewModel.fetchPlaylist()
+        }
+    }
+    
+    @objc func handleRemoveSongNotification (notification: Notification) {
+        if let track = notification.object as? PlaylistManagedObject {
+            viewModel.removeTrackPlaylist(element: track)
+            viewModel.fetchPlaylist()
+        }
+    }
+    
     // MARK: - ACTION
     
-    @IBAction func playPressed(sender: Any) {
+    @IBAction func playPlayerPressed(sender: Any) {
         playButton.isSelected.toggle()
         
         viewModel.player.state = playButton.isSelected ? .isPlaying : .stopped
     }
     
-    @IBAction func favoritePressed(sender: Any) {
+    @IBAction func favoritePlayerPressed(sender: Any) {
         favoriteButton.isSelected.toggle()
         
         if favoriteButton.isSelected {
-            viewModel.saveFavorite()
+            viewModel.player.saveFavorite(id: viewModel.player.songPlayingID)
         } else {
-            viewModel.removeFavorite()
+            viewModel.player.removeFavorite(id: viewModel.player.songPlayingID)
         }
     }
     
     @IBAction func addSongsPressed(sender: Any) {
-        
+        self.navigationController?.pushViewController(SearchViewController(), animated: true)
     }
 }
 
@@ -118,14 +136,53 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
                                                   for: indexPath) as? PlaylistTableViewCell else { return PlaylistTableViewCell() }
         cell.selectionStyle = .none
         
-        let track = viewModel.playlists[indexPath.row]
-        cell.binding(track: track)
+        let item = viewModel.playlists[indexPath.row]
+        let isliked = viewModel.isLiked(with: Int(item.id))
+        cell.binding(track: item, isLiked: isliked)
+        
+        cell.isFavoriteCellPressed = { [weak self] isLiked in
+            if isLiked {
+                self?.viewModel.saveFavorite(track: item)
+            } else {
+                self?.viewModel.removeFavorite(track: item)
+            }
+            self?.updateData()
+            self?.updateUI()
+        }
+        
+        cell.isDetailCellPressed = { [weak self] in
+            self?.navigationController?.pushViewController(DetailViewController(playlist: item),
+                                                  animated: true)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
+        let item = viewModel.playlists[indexPath.row]
         
+        titleLabel.text = item.title
+        userTitle.text = item.userName
+        favoriteButton.isSelected = viewModel.isLiked(with: Int(item.id))
+        playButton.isSelected = true
+        
+        viewModel.player.playMusic(with: item)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive,
+                                    title: "Delete") {  [weak self] (contextualAction, view, boolValue) in
+            
+            if let item = self?.viewModel.playlists[indexPath.row] {
+                self?.viewModel.removeTrackPlaylist(element: item)
+            }
+            
+            self?.tableView.reloadData()
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+
+        return swipeActions
     }
     
     func tableView(_ tableView: UITableView,

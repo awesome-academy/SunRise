@@ -71,6 +71,21 @@ final class Player {
         }
     }
     
+    func playMusic(with track: PlaylistManagedObject) {
+        addSongPlayer(streamUrl: track.streamURL) { done in
+            if done {
+                state = .isPlaying
+                songPlayingID = Int(track.id)
+                saveSongPlaying(with: track)
+                
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(playerDidReachEnd),
+                                                       name: Notification.Name.AVPlayerItemDidPlayToEndTime,
+                                                       object: nil)
+            }
+        }
+    }
+    
     @objc func playerDidReachEnd() {
         state = .stopped
     }

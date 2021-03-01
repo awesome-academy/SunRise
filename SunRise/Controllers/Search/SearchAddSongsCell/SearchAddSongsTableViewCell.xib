@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PlaylistTableViewCell" customModule="SunRise" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SearchAddSongsTableViewCell" customModule="SunRise" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -22,7 +22,7 @@
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="100" scale="small" weight="light"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTQ-dz-8Hd">
-                        <rect key="frame" x="130" y="20" width="190" height="44"/>
+                        <rect key="frame" x="130" y="20" width="204" height="44"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -37,20 +37,11 @@
                         <rect key="frame" x="0.0" y="119" width="414" height="41"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9Z-FN-EzT">
-                        <rect key="frame" x="364" y="34" width="50" height="50"/>
-                        <state key="normal" image="ic-dots-gray">
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                        </state>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcT-lp-qn1">
+                        <rect key="frame" x="358" y="35" width="46" height="49"/>
+                        <state key="normal" image="ic-plus-white"/>
                         <connections>
-                            <action selector="detailPressedWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pHK-sA-KHN"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1P0-Wk-XZ4">
-                        <rect key="frame" x="330" y="35" width="34" height="44"/>
-                        <state key="normal" image="ic-heart-white"/>
-                        <connections>
-                            <action selector="favoritePressedWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3b8-Gs-h0i"/>
+                            <action selector="addSongToPlaylistPressedWithSender:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T2R-AN-52Z"/>
                         </connections>
                     </button>
                 </subviews>
@@ -58,33 +49,29 @@
                     <constraint firstItem="bTW-uZ-86l" firstAttribute="top" secondItem="KTQ-dz-8Hd" secondAttribute="bottom" id="1AH-3r-wCx"/>
                     <constraint firstItem="u4W-P1-qAC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1AJ-tD-ren"/>
                     <constraint firstAttribute="trailing" secondItem="u4W-P1-qAC" secondAttribute="trailing" constant="294" id="6Mi-Cv-dES"/>
-                    <constraint firstAttribute="trailing" secondItem="1P0-Wk-XZ4" secondAttribute="trailing" constant="50" id="CDC-Ic-wYp"/>
+                    <constraint firstItem="jcT-lp-qn1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="35" id="ARP-Lu-4ca"/>
+                    <constraint firstAttribute="trailing" secondItem="jcT-lp-qn1" secondAttribute="trailing" constant="10" id="Bhf-6e-dXm"/>
                     <constraint firstAttribute="bottom" secondItem="KTQ-dz-8Hd" secondAttribute="bottom" constant="96" id="Dc3-cO-pnh"/>
                     <constraint firstItem="u4W-P1-qAC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="E32-gH-dhG"/>
                     <constraint firstItem="KTQ-dz-8Hd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="HDk-zg-nVX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bTW-uZ-86l" secondAttribute="trailing" constant="80" id="Hfe-UK-nSv"/>
-                    <constraint firstAttribute="trailing" secondItem="n9Z-FN-EzT" secondAttribute="trailing" id="IFc-NI-AeV"/>
                     <constraint firstAttribute="trailing" secondItem="k0u-om-m3M" secondAttribute="trailing" id="Nlg-ti-OHB"/>
                     <constraint firstItem="bTW-uZ-86l" firstAttribute="leading" secondItem="u4W-P1-qAC" secondAttribute="trailing" constant="10" id="OhJ-wr-3va"/>
-                    <constraint firstItem="k0u-om-m3M" firstAttribute="top" secondItem="n9Z-FN-EzT" secondAttribute="bottom" constant="35" id="SiL-2V-k1b"/>
                     <constraint firstAttribute="bottom" secondItem="u4W-P1-qAC" secondAttribute="bottom" constant="39" id="ToX-el-s2D"/>
-                    <constraint firstItem="n9Z-FN-EzT" firstAttribute="leading" secondItem="1P0-Wk-XZ4" secondAttribute="trailing" id="Yf6-h1-mP1"/>
-                    <constraint firstItem="k0u-om-m3M" firstAttribute="top" secondItem="1P0-Wk-XZ4" secondAttribute="bottom" constant="40" id="ajx-1c-yQL"/>
-                    <constraint firstAttribute="trailing" secondItem="n9Z-FN-EzT" secondAttribute="trailing" id="fKp-Wy-dfU"/>
-                    <constraint firstAttribute="trailing" secondItem="KTQ-dz-8Hd" secondAttribute="trailing" constant="94" id="gJd-pq-aWu"/>
+                    <constraint firstAttribute="trailing" secondItem="KTQ-dz-8Hd" secondAttribute="trailing" constant="80" id="gJd-pq-aWu"/>
                     <constraint firstAttribute="bottom" secondItem="k0u-om-m3M" secondAttribute="bottom" id="iH1-lq-avv"/>
+                    <constraint firstItem="jcT-lp-qn1" firstAttribute="leading" secondItem="KTQ-dz-8Hd" secondAttribute="trailing" constant="24" id="iJt-Np-RQH"/>
                     <constraint firstItem="KTQ-dz-8Hd" firstAttribute="leading" secondItem="u4W-P1-qAC" secondAttribute="trailing" constant="10" id="khx-Dy-c0H"/>
-                    <constraint firstItem="1P0-Wk-XZ4" firstAttribute="leading" secondItem="KTQ-dz-8Hd" secondAttribute="trailing" constant="10" id="o3Z-wj-G63"/>
                     <constraint firstItem="k0u-om-m3M" firstAttribute="top" secondItem="KTQ-dz-8Hd" secondAttribute="bottom" constant="55" id="phe-UH-9rT"/>
+                    <constraint firstItem="k0u-om-m3M" firstAttribute="top" secondItem="jcT-lp-qn1" secondAttribute="bottom" constant="35" id="s3O-Ai-Ulf"/>
                     <constraint firstItem="k0u-om-m3M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="snx-rV-BGJ"/>
-                    <constraint firstItem="1P0-Wk-XZ4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="35" id="t2N-fb-EXQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="bTW-uZ-86l" secondAttribute="bottom" constant="60" id="wGE-FR-sET"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" red="0.10980392156862745" green="0.13725490196078433" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="favoriteButton" destination="1P0-Wk-XZ4" id="57Y-KN-4Db"/>
+                <outlet property="addSongButton" destination="jcT-lp-qn1" id="QLU-8P-ksw"/>
                 <outlet property="songImage" destination="u4W-P1-qAC" id="jc5-cS-Sfh"/>
                 <outlet property="titleLabel" destination="KTQ-dz-8Hd" id="qv8-Wk-X2g"/>
                 <outlet property="userLabel" destination="bTW-uZ-86l" id="RbK-Yl-op8"/>
@@ -94,7 +81,6 @@
     </objects>
     <resources>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="110"/>
-        <image name="ic-dots-gray" width="50" height="50"/>
-        <image name="ic-heart-white" width="50" height="50"/>
+        <image name="ic-plus-white" width="48" height="48"/>
     </resources>
 </document>

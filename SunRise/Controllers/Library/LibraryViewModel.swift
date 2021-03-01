@@ -47,6 +47,14 @@ class LibraryViewModel {
         let groupByPlaylistName = Dictionary(grouping: playlists) { playlists -> String in
             return (playlists.playlistName ?? "")
         }
+        for (key, values) in groupByPlaylistName {
+            self.playlists[key] = values
+        }
         self.playlists = groupByPlaylistName
+    }
+    
+    func removePlaylist(name: String) {
+        CoreDataManager.Playlist.removePlaylist(with: name)
+        fetchPlaylist()
     }
 }

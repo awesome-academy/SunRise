@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRP-rb-Eim">
-                    <rect key="frame" x="0.0" y="154" width="414" height="633"/>
+                    <rect key="frame" x="0.0" y="174" width="414" height="613"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,7 +94,7 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hmf-bZ-tu6">
-                    <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                    <rect key="frame" x="0.0" y="64" width="414" height="100"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4c-oT-Hml">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="100"/>
@@ -134,7 +134,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CnT-tT-m5I" secondAttribute="trailing" id="INa-UT-a26"/>
                 <constraint firstItem="CnT-tT-m5I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="IgV-gg-pFJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hmf-bZ-tu6" secondAttribute="trailing" id="KBm-xf-CC2"/>
-                <constraint firstItem="hmf-bZ-tu6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MKc-aY-LvW"/>
+                <constraint firstItem="hmf-bZ-tu6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="MKc-aY-LvW"/>
                 <constraint firstItem="CnT-tT-m5I" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="800" id="P3r-ei-67Q"/>
                 <constraint firstItem="hmf-bZ-tu6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aqX-be-dwg"/>
                 <constraint firstItem="oRP-rb-Eim" firstAttribute="top" secondItem="hmf-bZ-tu6" secondAttribute="bottom" constant="10" id="do1-Z1-ROy"/>

@@ -16,12 +16,13 @@ class PlaylistViewModel {
     }
     // MARK: - CoreData
     
-    func saveFavorite() {
-        player.saveFavorite(id: player.songPlayingID)
+    // Favorite
+    func saveFavorite(track: PlaylistManagedObject) {
+        CoreDataManager.Favorite.save(with: track)
     }
     
-    func removeFavorite() {
-        player.removeFavorite(id: player.songPlayingID)
+    func removeFavorite(track: PlaylistManagedObject) {
+        CoreDataManager.Favorite.remove(with: Int(track.id))
     }
     
     func fetchFavorite() {
@@ -32,11 +33,35 @@ class PlaylistViewModel {
         return CoreDataManager.Favorite.findItem(with: id)
     }
     
+    // Player
     func fetchTrackPlaying() -> PlayingManagedObject?{
         return player.fetchTrackPlaying()
     }
     
     func saveSongPlaying(with track: Track) {
         player.saveSongPlaying(with: track)
+    }
+    
+    // Playlist
+    func addSongToPlaylist(with track: Track) {
+        if let playlistName = playlists.first?.playlistName {
+            CoreDataManager.Playlist.addTrackToPlaylist(playlistName: playlistName, with: track)
+        }
+    }
+    
+    func fetchPlaylist() {
+        let newPlaylists = CoreDataManager.Playlist.fetchData()
+        let groupByPlaylistName = Dictionary(grouping: newPlaylists) { playlists -> String in
+            return (playlists.playlistName ?? "")
+        }
+        
+        if let playlistName = playlists.first?.playlistName {
+            playlists = groupByPlaylistName[playlistName] ?? [PlaylistManagedObject]()
+        }
+    }
+    
+    func removeTrackPlaylist(element: PlaylistManagedObject) {
+        playlists.removeAll(where: { $0.id == element.id })
+        CoreDataManager.Playlist.remove(with: Int(element.id))
     }
 }

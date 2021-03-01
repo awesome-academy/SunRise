@@ -21,6 +21,12 @@ final class DetailViewController: BaseViewController {
         
     }
     
+    init(playlist: PlaylistManagedObject) {
+        self.viewModel = DetailViewModel(track: playlist)
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

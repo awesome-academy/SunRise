@@ -3,6 +3,7 @@ import UIKit
 
 final class DetailViewModel {
     private var favorite: FavoriteManagedObject?
+    private var playlist: PlaylistManagedObject?
     private let player = Player.shared
     
     // MARK: - Init
@@ -11,43 +12,37 @@ final class DetailViewModel {
         self.favorite = track
     }
     
+    init(track: PlaylistManagedObject) {
+        self.playlist = track
+    }
+    
     // MARK: - Public func
     
     func getTitle() -> String {
-        return favorite?.title ?? "Invalid"
+        return favorite?.title ?? playlist?.title ?? "Invalid"
     }
     
     func getUser() -> String {
-        return favorite?.userName ?? "Invalid"
+        return favorite?.userName ?? playlist?.userName ?? "Invalid"
     }
     
     func getSongImage(completion: @escaping APICompletion<UIImage?>) {
-        if let track = favorite {
-            track.artworkURL?.downloadImage(completion: completion)
-        }
-        return completion(.failure(.error("Invalid type")))
+        favorite?.artworkURL?.downloadImage(completion: completion) ?? playlist?.artworkURL?.downloadImage(completion: completion) ?? completion(.failure(.error("Invalid type")))
     }
     
     // MARK: - CoreData
     
     func saveFavorite() {
-        if let track = favorite {
-            player.saveFavorite(id: Int(track.id))
-        }
+        CoreDataManager.Favorite.save(with: favorite ?? playlist)
     }
     
     func removeFavorite() {
-        if let track = favorite {
-            player.removeFavorite(id: Int(track.id))
-        }
+        CoreDataManager.Favorite.remove(with: Int(((favorite?.id ?? playlist?.id) ?? 0)))
         
     }
     
     func isLiked() -> Bool {
-        if let track = favorite {
-            return CoreDataManager.Favorite.findItem(with: Int(track.id))
-        }
-        return false
+        return CoreDataManager.Favorite.findItem(with: Int(((favorite?.id ?? playlist?.id) ?? 0)))
     }
     
     func addSongToPlaylist() {
@@ -55,6 +50,9 @@ final class DetailViewModel {
     }
     
     func removeSongFromPlaylist() {
-        
+        if let playlist = playlist {
+            let notification = Notification(name: .removeSongPlaylist, object: playlist, userInfo: nil)
+            NotificationCenter.default.post(notification)
+        }
     }
 }

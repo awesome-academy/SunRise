@@ -33,9 +33,10 @@ final class DetailViewController: BaseViewController {
     // MARK: - Config
     
     override func setupUI() {
+        super.setupUI()
+        
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
         
         favoriteButton.image = UIImage(named: "ic-heart-white")
         favoriteButton.selectedImage = UIImage(named: "ic-heart-green")
@@ -88,9 +89,10 @@ final class DetailViewController: BaseViewController {
         let contentViewController = AddSongPlaylistViewController()
         contentViewController.preferredContentSize = contentViewController.view.frame.size
         alertController.setValue(contentViewController, forKey: "contentViewController")
-        alertController.view.backgroundColor = .white
-    
         
+        let alertBackgroundView = (alertController.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        alertBackgroundView.backgroundColor = .white
+    
         contentViewController.onPlaylistNameSelected = { [weak self] playlistName in
             self?.viewModel.playlistName = playlistName
         }

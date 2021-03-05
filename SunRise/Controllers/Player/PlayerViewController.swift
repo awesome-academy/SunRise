@@ -50,8 +50,8 @@ final class PlayerViewController: BaseViewController {
     
     override func setupUI() {
         super.setupUI()
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
         
         favoriteButton.image = UIImage(named: "ic-heart-white")
         favoriteButton.selectedImage = UIImage(named: "ic-heart-green")

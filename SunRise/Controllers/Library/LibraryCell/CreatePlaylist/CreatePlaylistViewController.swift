@@ -12,7 +12,9 @@ final class CreatePlaylistViewController: BaseViewController {
     }
     
     override func setupUI() {
+        super.setupUI()
         self.navigationItem.title = "Give your playlist a name"
+       
     }
     
     // MARK: - Action

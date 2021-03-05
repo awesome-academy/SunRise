@@ -23,8 +23,9 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateUI()
+        updatePlayerUI()
     }
+    
     // MARK: - Config
     
     override func setupData() {
@@ -34,10 +35,10 @@ final class HomeViewController: BaseViewController {
         tableView.register(GenreTableViewCell.nib,
                            forCellReuseIdentifier: GenreTableViewCell.reuseIdentifier)
         
-        viewModel.loadAPI() { [weak self]done in
+        viewModel.loadAPI() { [weak self] done in
             if done {
                 self?.viewModel.genreSorted()
-                self?.updateUI()
+                self?.tableView.reloadData()
             }
         }
         
@@ -56,9 +57,7 @@ final class HomeViewController: BaseViewController {
         playButton.selectedImage = UIImage(systemName: "pause.fill")
     }
     
-    private func updateUI() {
-        
-        tableView.reloadData()
+    private func updatePlayerUI() {
         
         switch viewModel.player.state {
         case .isPlaying:

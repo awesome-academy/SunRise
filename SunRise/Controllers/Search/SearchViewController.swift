@@ -11,6 +11,7 @@ private enum TypeScreen {
     case history
     case resultSearch
     case resultAddSongs
+    case noResultsFound
     
     var heightForRowTableView: CGFloat {
         switch self {
@@ -30,10 +31,22 @@ final class SearchViewController: BaseViewController {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var userTitle: UILabel!
     @IBOutlet weak private var searchTextField: UITextField!
+    @IBOutlet weak private var noReultsImage: UIImageView!
     
     private var viewModel = SearchViewModel()
     private var typeScreenInit: TypeScreen?
-    private var typeSreen: TypeScreen = .history
+    private var typeSreen: TypeScreen = .history {
+        didSet {
+            switch typeSreen {
+            case .noResultsFound:
+                tableView.alpha = 0
+                noReultsImage.alpha = 1
+            default:
+                tableView.alpha = 1
+                noReultsImage.alpha = 0
+            }
+        }
+    }
     private var playlistNameToAdd: String?
     
     override func viewDidLoad() {
@@ -50,6 +63,8 @@ final class SearchViewController: BaseViewController {
     // MARK: - Config
     
     override func setupData() {
+        super.setupData()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -64,6 +79,8 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setupUI() {
+        super.setupUI()
+        
         if self.navigationController?.getPreviousViewController() == self.navigationController?.presentedViewController {
             typeScreenInit = .resultSearch
             typeSreen = .history
@@ -76,13 +93,15 @@ final class SearchViewController: BaseViewController {
         }
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
+        self.hideKeyboardWhenTappedAround()
         
         favoriteButton.image = UIImage(named: "ic-heart-white")
         favoriteButton.selectedImage = UIImage(named: "ic-heart-green")
         
         playButton.image = UIImage(systemName: "play.fill")
         playButton.selectedImage = UIImage(systemName: "pause.fill")
+        
+        noReultsImage.alpha = 0
     }
     
     @objc private func popToLibraryViewController() {
@@ -142,6 +161,10 @@ final class SearchViewController: BaseViewController {
         }
     }
     
+    @IBAction func searchingEditingChanged(send: Any) {
+        typeSreen = .history
+    }
+    
     @IBAction func searching(sender: Any) {
         let text = searchTextField.text ?? ""
         
@@ -153,6 +176,8 @@ final class SearchViewController: BaseViewController {
                 if done {
                     self?.typeSreen = self?.typeScreenInit ?? .resultSearch
                     self?.updateUI()
+                } else {
+                    self?.typeSreen = .noResultsFound
                 }
             }
         }
@@ -206,6 +231,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.tableView.reloadData()
             }
             return cell
+        case .noResultsFound:
+            return UITableViewCell()
         }
         
     }

@@ -60,7 +60,11 @@ final class SearchAddSongsTableViewCell: UITableViewCell, Reusable, NibLoadable 
         isAddButtonPressed?()
         addSongButton.isUserInteractionEnabled = false
         if let track = track {
-            pushAddSongNotificaiton(track: track)
+            if track.title != nil,
+              track.userName != nil,
+              track.artworkURL != nil{
+                pushAddSongNotificaiton(track: track)
+            }
         }
 
     }

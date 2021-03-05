@@ -28,6 +28,8 @@ final class FavoriteViewController: BaseViewController {
     // MARK: - Config
     
     override func setupData() {
+        super.setupData()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(FavoriteTableViewCell.nib,
@@ -36,9 +38,10 @@ final class FavoriteViewController: BaseViewController {
     }
     
     override func setupUI() {
+        super.setupUI()
+        
         self.navigationItem.title = "Liked Songs"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
         
         favoriteButton.image = UIImage(named: "ic-heart-white")
         favoriteButton.selectedImage = UIImage(named: "ic-heart-green")

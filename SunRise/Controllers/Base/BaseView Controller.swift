@@ -14,6 +14,6 @@ class BaseViewController: UIViewController, UITabBarDelegate {
     }
     
     func setupUI() {
-        
+        self.navigationController?.navigationBar.tintColor = .white
     }
 }

@@ -21,7 +21,7 @@ final class PlaylistViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateData()
-        updateUI()
+        updatePlayerUI()
     }
     
     init(playlists: [PlaylistManagedObject]) {
@@ -36,6 +36,10 @@ final class PlaylistViewController: BaseViewController {
     // MARK: - Config
     
     override func setupData() {
+        super.setupData()
+        
+        tableView.reloadData()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -48,9 +52,10 @@ final class PlaylistViewController: BaseViewController {
     }
     
     override func setupUI() {
+        super.setupUI()
+        
         self.navigationItem.title = viewModel.playlists.first?.playlistName
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic-left-arrow-white"), style: .plain, target: self, action: #selector(popToLibraryViewController))
-        self.navigationItem.leftBarButtonItem?.tintColor = .white
         
         favoriteButton.image = UIImage(named: "ic-heart-white")
         favoriteButton.selectedImage = UIImage(named: "ic-heart-green")
@@ -69,9 +74,7 @@ final class PlaylistViewController: BaseViewController {
         viewModel.fetchFavorite()
     }
     
-    private func updateUI() {
-        
-        tableView.reloadData()
+    private func updatePlayerUI() {
         
         switch Player.shared.state {
         case .isPlaying:
@@ -152,7 +155,7 @@ extension PlaylistViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.viewModel.removeFavorite(track: item)
             }
             self?.updateData()
-            self?.updateUI()
+            self?.updatePlayerUI()
         }
         
         cell.isDetailCellPressed = { [weak self] in

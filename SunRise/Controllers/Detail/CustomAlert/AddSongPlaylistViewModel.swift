@@ -1,6 +1,6 @@
 import Foundation
 
-class AddSongPlaylistViewModel {
+final class AddSongPlaylistViewModel {
     
     private var playlists = [String : [PlaylistManagedObject]]() {
         didSet {

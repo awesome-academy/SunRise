@@ -18,7 +18,9 @@ extension API {
                 } else {
                     if let data = data {
                         completion(.success(data))
+                        return
                     }
+                    completion(.failure(.error("Dont have the data")))
                 }
             }
         }

@@ -90,7 +90,7 @@ final class FavoriteViewController: BaseViewController {
         favoriteButton.isSelected.toggle()
         
         if favoriteButton.isSelected {
-            viewModel.saveFavorite(id: viewModel.songPlayingID)
+            viewModel.saveFavorite()
         } else {
             viewModel.removeFavorite(id: viewModel.songPlayingID)
         }

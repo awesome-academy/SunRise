@@ -12,14 +12,8 @@ class SearchViewModel {
     }
     
     var tracks = [Track]()
-    private var favorites = [FavoriteManagedObject]()
     var playlists = [PlaylistManagedObject]()
     let player = Player.shared
-    var songs = [String: [Track]]() {
-        didSet {
-            player.songs = songs
-        }
-    }
     
     // MARK: - Public func
     
@@ -34,15 +28,11 @@ class SearchViewModel {
     // MARK: - CoreData
     
     func saveFavorite() {
-        player.saveFavorite(id: player.songPlayingID)
+        player.saveFavorite()
     }
     
     func removeFavorite() {
-        player.removeFavorite(id: player.songPlayingID)
-    }
-    
-    func fetchFavorite() {
-        favorites = CoreDataManager.Favorite.fetchData()
+        player.removeFavorite()
     }
     
     func isLiked(with id: Int) -> Bool {

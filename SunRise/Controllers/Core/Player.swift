@@ -13,7 +13,7 @@ final class Player {
     static let shared = Player()
     private var audioPlayer = AVPlayer()
     var songs = [String: [Track]]()
-    var songPlayingID: Int?
+    var songPlaying: PlayingManagedObject?
     
     var state: State = .stopped {
         didSet {
@@ -114,7 +114,6 @@ final class Player {
         addSongPlayer(streamUrl: track.streamURL) { done in
             if done {
                 state = .isPlaying
-                songPlayingID = track.trackID
                 saveSongPlaying(with: track)
                 setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
@@ -125,7 +124,6 @@ final class Player {
         addSongPlayer(streamUrl: track.streamURL) { done in
             if done {
                 state = .isPlaying
-                songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
                 setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
@@ -136,7 +134,6 @@ final class Player {
         addSongPlayer(streamUrl: track.streamURL) { done in
             if done {
                 state = .isPlaying
-                songPlayingID = Int(track.id)
                 saveSongPlaying(with: track)
                 setupNowPlaying(title: track.title, userName: track.userName, artworkURL: track.artworkURL)
             }
@@ -190,7 +187,6 @@ final class Player {
                 addSongPlayer(streamUrl: playing.streamURL,
                               completion: { _ in })
             }
-            songPlayingID = Int(playing.id)
             return playing
         }
         return nil
@@ -201,21 +197,15 @@ final class Player {
         CoreDataManager.Playing.save(with: track)
     }
     
-    func saveFavorite(id: Int?) {
-        for (_, tracks) in songs {
-            for track in tracks where track.trackID == id{
-                CoreDataManager.Favorite.save(with: track)
-                return
-            }
+    func saveFavorite() {
+        if let songPlaying = fetchTrackPlaying() {
+            CoreDataManager.Favorite.save(with: songPlaying)
         }
     }
     
-    func removeFavorite(id: Int?) {
-        for (_, tracks) in songs {
-            for track in tracks where track.trackID == id {
-                CoreDataManager.Favorite.remove(with: track.trackID ?? 0)
-                return
-            }
+    func removeFavorite() {
+        if let songPlaying = fetchTrackPlaying() {
+            CoreDataManager.Favorite.remove(with: Int(songPlaying.id))
         }
     }
 }

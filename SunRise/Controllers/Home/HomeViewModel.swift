@@ -68,11 +68,11 @@ final class HomeViewModel {
     // MARK: - CoreData
     
     func saveFavorite() {
-        player.saveFavorite(id: player.songPlayingID)
+        player.saveFavorite()
     }
     
     func removeFavorite() {
-        player.removeFavorite(id: player.songPlayingID)
+        player.removeFavorite()
     }
     
     func isLiked(with id: Int) -> Bool {

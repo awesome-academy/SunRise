@@ -20,10 +20,8 @@ class FavoriteViewModel {
     
     // MARK: - CoreData
     
-    func saveFavorite(id: Int?) {
-        if let id = id {
-            player.saveFavorite(id: id)
-        }
+    func saveFavorite() {
+        player.saveFavorite()
     }
     
     func removeFavorite(id: Int?) {

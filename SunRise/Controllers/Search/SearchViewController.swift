@@ -56,7 +56,6 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateData()
         updateUI()
     }
     
@@ -118,10 +117,6 @@ final class SearchViewController: BaseViewController {
     }
     
     // MARK: - Update
-    
-    private func updateData() {
-        viewModel.fetchFavorite()
-    }
     
     private func updateUI() {
         if(tableView.numberOfRows(inSection: 0) != 0 ) {

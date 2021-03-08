@@ -57,6 +57,7 @@
 		33502DF325CD4B9E00D20B10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33502DF225CD4B9E00D20B10 /* SceneDelegate.swift */; };
 		33502DFA25CD4BA000D20B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33502DF925CD4BA000D20B10 /* Assets.xcassets */; };
 		33502DFD25CD4BA000D20B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33502DFB25CD4BA000D20B10 /* LaunchScreen.storyboard */; };
+		33889DBD25F60B070023A91A /* SunRiseXCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33889DBC25F60B070023A91A /* SunRiseXCTests.swift */; };
 		339500EF25DCCAFB00D67646 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339500EE25DCCAFB00D67646 /* Colors.xcassets */; };
 		3397BCAB25E48D3E00D377FD /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3397BCA825E48D3E00D377FD /* DetailViewController.xib */; };
 		3397BCAC25E48D3E00D377FD /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397BCA925E48D3E00D377FD /* DetailViewModel.swift */; };
@@ -153,6 +154,7 @@
 		33502DF925CD4BA000D20B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33502DFC25CD4BA000D20B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33502DFE25CD4BA000D20B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33889DBC25F60B070023A91A /* SunRiseXCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunRiseXCTests.swift; sourceTree = "<group>"; };
 		339500EE25DCCAFB00D67646 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3397BCA825E48D3E00D377FD /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		3397BCA925E48D3E00D377FD /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				3316902F25F22271006EB048 /* content.json */,
 				3316902525F22159006EB048 /* SunRiseTests.swift */,
 				3316902725F22159006EB048 /* Info.plist */,
+				33889DBC25F60B070023A91A /* SunRiseXCTests.swift */,
 			);
 			path = SunRiseTests;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33889DBD25F60B070023A91A /* SunRiseXCTests.swift in Sources */,
 				3316902625F22159006EB048 /* SunRiseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
